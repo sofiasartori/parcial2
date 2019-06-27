@@ -3,6 +3,7 @@ import { Usuario } from '../usuario';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { registroUsuarioService } from '../registro-usuario.service';
 import { Router } from '@angular/router';
+import { WsService } from '../ws.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   miUsuarioServicio: registroUsuarioService;
   emailLocal: string = 'email';
   
-  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router) {
+  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, private ws: WsService) {
     this.miUsuarioServicio = serviceUsuario;
     this.usuario.email='';
    }
@@ -39,7 +40,21 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log('email: ' + this.usuario.email);
+
+    console.log( this.usuario );
+    this.ws.get( {} )
+    .then( data => {
+      console.log(data);
+      if ( data.token )
+      {
+        localStorage.setItem('token', data.token);
+      }
+    })
+    .catch( e => {
+      console.log(e);
+    } );
+
+    /*console.log('email: ' + this.usuario.email);
     this.miUsuarioServicio.buscar('usuarios/', this.usuario.email).then(response=>{
       if(!response){
         console.log(response);
@@ -51,7 +66,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem(this.emailLocal, this.usuario.email);
         this.router.navigate(['/inicio']);
       }
-    });
+    });*/
   }
 
 }

@@ -16,6 +16,10 @@ import { ListadoMascotaComponent } from './listado-mascota/listado-mascota.compo
 import { EditarMascotaComponent } from './editar-mascota/editar-mascota.component';
 import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
 import { ListarTurnoComponent } from './listar-turno/listar-turno.component';
+import { JwtModule } from './jwt/jwt.module';
+import { WsService } from './ws.service';
+import { AuthService } from './auth.service';
+import { VerificarJWTService } from './verificar-jwt.service';
 
 const appRoutes: Routes = [
   {
@@ -51,9 +55,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    JwtModule
   ],
-  providers: [],
+  providers: [WsService,
+    AuthService,
+    VerificarJWTService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// JwtModule
