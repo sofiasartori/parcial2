@@ -13,6 +13,9 @@ import { ErrorLoginComponent } from './error-login/error-login.component';
 import { EmailSesionComponent } from './email-sesion/email-sesion.component';
 import { AltaMascotaComponent } from './alta-mascota/alta-mascota.component';
 import { ListadoMascotaComponent } from './listado-mascota/listado-mascota.component';
+import { EditarMascotaComponent } from './editar-mascota/editar-mascota.component';
+import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
+import { ListarTurnoComponent } from './listar-turno/listar-turno.component';
 
 const appRoutes: Routes = [
   {
@@ -37,7 +40,10 @@ const appRoutes: Routes = [
     ErrorLoginComponent,
     EmailSesionComponent,
     AltaMascotaComponent,
-    ListadoMascotaComponent
+    ListadoMascotaComponent,
+    EditarMascotaComponent,
+    PedirTurnoComponent,
+    ListarTurnoComponent
   ],
   imports: [
     BrowserModule,

@@ -66,6 +66,18 @@ export class MiHttpService {
     });
   }
 
+  public httpPut( url: string, id: number )
+  {
+    let header = new Headers();
+    header.set
+    return this.http
+    .put( url + id, this.options )
+    .subscribe( data => {
+      console.log( data );
+      return data;
+    });
+  }
+
   public httpGetO ( url: string): Observable<any>
   {
     return this.http.get( url )

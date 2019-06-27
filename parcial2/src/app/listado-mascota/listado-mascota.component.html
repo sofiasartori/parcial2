@@ -1,3 +1,26 @@
-<p>
-  listado-mascota works!
-</p>
+<table class="table table-condensed" style="border-width: 2px; border-color: black; border-style: solid;">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Animal</th>
+        <th>Raza</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Dueño</th>
+        <th>Foto</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mascota of listado" >
+        <td>{{mascota.id}} </td>
+        <td>{{mascota.animal}} </td>
+        <td>{{mascota.raza}} </td>
+        <td>{{mascota.nombre}} </td>
+        <td>{{mascota.edad}} </td>
+        <td>{{mascota.duenio}} </td>
+        <td><img class="fotomascota" [src]="mascota.foto" /> </td>
+        <td><app-editar-mascota [mascota]="mascota.id"></app-editar-mascota></td>
+      </tr>
+    </tbody>
+  </table>
