@@ -1,3 +1,14 @@
-<p>
-  listar-turno works!
-</p>
+<table class="table table-condensed" style="border-width: 2px; border-color: black; border-style: solid;">
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turno of listado" >
+        <td>{{turno.dia}} </td>
+        <td>{{turno.hora}} </td>
+      </tr>
+    </tbody>
+  </table>

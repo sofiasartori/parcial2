@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TurnoService } from '../turno.service';
 
 @Component({
   selector: 'app-listar-turno',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarTurnoComponent implements OnInit {
 
-  constructor() { }
+  listado: any;
+  miTurnoServicio: TurnoService;
+  
 
-  ngOnInit() {
+  constructor(serviceTurno: TurnoService) {
+    this.miTurnoServicio = serviceTurno;
+
+
   }
-
+  ngOnInit() {
+    this.TraerTodos();
+  }
+  TraerTodos() {
+    this.miTurnoServicio.traertodos('turnos/', '').then(data => {
+      this.listado = data
+      console.log(data)
+    })
+  }
 }
