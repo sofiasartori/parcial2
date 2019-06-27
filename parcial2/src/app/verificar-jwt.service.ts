@@ -26,7 +26,7 @@ export class VerificarJWTService implements CanActivate {
         }
         else
         {
-          this.router.navigate(['/error']);
+          this.router.navigate(['/errorLogin']);
           // this.router.navigate(['/pages/forms/inputs']);
           return !true;
         }

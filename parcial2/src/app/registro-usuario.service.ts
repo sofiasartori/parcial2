@@ -27,7 +27,7 @@ export class registroUsuarioService {
   return this.miHttp.borrarUsuario('usuarios/', id);
  }
 
- buscar(ruta: string, desc: string){
-   return this.miHttp.buscarUsuario('usuarios/', desc);
+ login(ruta: string, desc: any){
+   return this.miHttp.insertarUsuario('login/', desc);
  }
 }

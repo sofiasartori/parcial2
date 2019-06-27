@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { throwError } from 'rxjs';
 
 
 @Injectable()
@@ -24,13 +25,8 @@ export class WsService {
    * Metodo HTTP nativo
    * @param user
    */
-  get(user: Object)
-  {
-    return this.http.get(this.url, user)
-    .toPromise()
-    .then( this.extractData )
-    .catch( this.handleError );
-  }
+
+  
 
   /**
    * Wrapper de HTTP que envia el token en la cabecera.

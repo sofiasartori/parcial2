@@ -8,6 +8,7 @@ import { MiHttpService } from './mi-http.service';
 export class ArchivosUsuarioService {
 
   api = 'http://localhost:8080/veterinaria/apirest.php/';
+  //apiJWT = 'http://localhost:8080/veterinaria/jwt/';
   peticion: any;
   constructor( public miHttp: MiHttpService ) {
   }

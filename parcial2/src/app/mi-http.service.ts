@@ -48,10 +48,12 @@ export class MiHttpService {
     header.set
     return this.http
     .post( url,objeto,this.options )
-    .subscribe( data => {
+    .map((res:Response)=>res)
+    .catch( ( err: any ) => throwError(err || 'Server error'));
+    /*.subscribe( data => {
       console.log( data );
       return data;
-    });
+    });*/
   }
 
   public httpDelete( url: string, id: number )
