@@ -4,8 +4,9 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 import { registroUsuarioService } from '../registro-usuario.service';
 import { Router, Data } from '@angular/router';
 import { WsService } from '../ws.service';
-import { VerificarJWTService } from '../verificar-jwt.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from '../auth.service';
+import * as jwt_decode from "jwt-decode";
+import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,13 @@ export class LoginComponent implements OnInit {
   miUsuarioServicio: registroUsuarioService;
   emailLocal: string = 'email';
   tokenLocal: string = 'token';
+  tipoLocal: string = 'tipo';
+  authServicio: AuthService;
   
-  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, private ws: WsService) {
+  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, private ws: WsService, authoService: AuthService) {
     this.miUsuarioServicio = serviceUsuario;
     this.usuario.email='';
+    this.authServicio = authoService;
    }
 
   email = new FormControl('', [
@@ -42,16 +46,19 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-
-    console.log('email: ' + this.usuario.email);
-    let jwt: JwtHelperService;
-    let pepe: string;
+    let respuesta: string;
+    let token: any;
+    let tipo: string;
+    let auth: AuthGuard;
     this.miUsuarioServicio.login('/login/', this.usuario).toPromise().then(response =>{
-      pepe = JSON.stringify(response)
+      respuesta = JSON.stringify(response);
+      console.log("respuesta "+ respuesta);
       localStorage.setItem(this.emailLocal, this.usuario.email);
-      jwt.decodeToken(pepe);
-       this.router.navigate(['/inicio']);
-      localStorage.setItem(this.tokenLocal, pepe);
+      localStorage.setItem(this.tokenLocal, respuesta);
+      token = jwt_decode(respuesta);
+      tipo = token.data.Tipo;
+      localStorage.setItem(this.tipoLocal, tipo);
+        auth.canActivate;
       },
       msg=>{
         this.router.navigate(['/errorLogin']);

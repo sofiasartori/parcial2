@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AuthHttp, AuthConfig, tokenNotExpired, JwtHelper } from 'angular2-jwt';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+
 
 @Injectable()
 export class AuthService {
@@ -9,6 +9,7 @@ export class AuthService {
   public name: string;
   private _token: string;
   jwtHelper: JwtHelperService = new JwtHelperService();
+    
   
   constructor( private router: Router ) {
     this._token = localStorage.getItem('token');
@@ -27,12 +28,14 @@ export class AuthService {
 
   public getToken ()
   {
-    try {
-      console.log('getToekn', this.jwtHelper.decodeToken(this._token));
-      return this.jwtHelper.decodeToken(this._token);
-    } catch (error) {
-      return undefined;
-    }
+      try{
+        console.log('getToekn', this.jwtHelper.decodeToken(this._token));
+        return this.jwtHelper.decodeToken(this._token);
+      }
+      catch (error) {
+      console.log("error pepe");
+        return undefined;
+      }
   }
 
   public getExpirationDate()

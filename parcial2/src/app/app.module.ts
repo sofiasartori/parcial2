@@ -20,6 +20,7 @@ import { ListarTurnoComponent } from './listar-turno/listar-turno.component';
 import { WsService } from './ws.service';
 import { AuthService } from './auth.service';
 import { VerificarJWTService } from './verificar-jwt.service';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -28,10 +29,11 @@ const appRoutes: Routes = [
     component: InicioComponent
   },
   { path: '',   redirectTo: '/inicio', pathMatch: 'full' },
-  //{ path: 'pagina2', component: Pagina2Component, canActivate: [VerificarJWTService], },
+  { path: 'formularioTurno', component: PedirTurnoComponent},
   { path: 'login', component: LoginComponent },
   { path: 'formulario-usuario',  component: FormularioAltaComponent},
-  { path: 'errorLogin',  component: ErrorLoginComponent}
+  { path: 'errorLogin',  component: ErrorLoginComponent},
+  { path: 'formularioMascota',  component: AltaMascotaComponent}
   //{ path: '**', component: ErrorComponent }
 ];
 
@@ -55,8 +57,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
-    //JwtModule
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [WsService,
     AuthService,
