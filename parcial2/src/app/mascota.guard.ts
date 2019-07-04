@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate{
+export class MascotaGuard implements CanActivate{
   constructor(private router: Router){
-    console.log("asdaaaaaaa");
+    console.log('mascota');
   }
   canActivate(){
-    console.log("asda");
-    if (localStorage.getItem('tipo') === 'cliente') {
+
+    if (localStorage.getItem('tipo') === 'administrador') {
       return true;
     } else {
       return false;

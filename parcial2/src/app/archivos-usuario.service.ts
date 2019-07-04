@@ -7,7 +7,8 @@ import { MiHttpService } from './mi-http.service';
 })
 export class ArchivosUsuarioService {
 
-  api = 'http://localhost:8080/veterinaria/apirest.php/';
+  api = 'http://localhost/veterinaria/apirest.php/';
+  //api = 'http://localhost:8080/veterinaria/apirest.php/';
   //apiJWT = 'http://localhost:8080/veterinaria/jwt/';
   peticion: any;
   constructor( public miHttp: MiHttpService ) {
@@ -28,13 +29,13 @@ export class ArchivosUsuarioService {
 
   public insertarUsuario(ruta, objeto) {
     return this.miHttp.httpPostP2(this.api + ruta, JSON.stringify(objeto));
-    
+
   }
 
   public borrarUsuario(ruta, id) {
     console.log('id:' + id);
     return this.miHttp.httpDelete(this.api + ruta, id);
-    
+
   }
 
   public buscarUsuario(ruta, desc){

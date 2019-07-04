@@ -6,7 +6,8 @@ import { MiHttpService } from './mi-http.service';
 })
 export class ArchivosTurnoService {
 
-  api = 'http://localhost:8080/veterinaria/apirest.php/';
+  api = 'http://localhost/veterinaria/apirest.php/';
+  //api = 'http://localhost:8080/veterinaria/apirest.php/';
   peticion: any;
   constructor( public miHttp: MiHttpService ) {
   }
@@ -27,6 +28,6 @@ export class ArchivosTurnoService {
   public insertarTurno(ruta, objeto) {
     console.log('objeto:' + JSON.stringify(objeto));
     return this.miHttp.httpPostP2(this.api + ruta, JSON.stringify(objeto));
-    
+
   }
 }

@@ -13,7 +13,8 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class WsService {
 
-  url: string = 'http://localhost:8080/veterinaria/jwt/';
+  api = 'http://localhost/veterinaria/apirest.php/';
+  //api = 'http://localhost:8080/veterinaria/apirest.php/';
   //url: string = 'http://localhost/servidor/jwt/';
 
   constructor(public http: HttpClient, private authHttp: HttpClient)
@@ -26,7 +27,7 @@ export class WsService {
    * @param user
    */
 
-  
+
 
   /**
    * Wrapper de HTTP que envia el token en la cabecera.

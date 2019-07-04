@@ -1,3 +1,4 @@
+import { MascotaGuard } from './mascota.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,7 +17,6 @@ import { ListadoMascotaComponent } from './listado-mascota/listado-mascota.compo
 import { EditarMascotaComponent } from './editar-mascota/editar-mascota.component';
 import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
 import { ListarTurnoComponent } from './listar-turno/listar-turno.component';
-//import { JwtModule } from './jwt/jwt.module';
 import { WsService } from './ws.service';
 import { AuthService } from './auth.service';
 import { VerificarJWTService } from './verificar-jwt.service';
@@ -29,11 +29,11 @@ const appRoutes: Routes = [
     component: InicioComponent
   },
   { path: '',   redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'formularioTurno', component: PedirTurnoComponent},
+  { path: 'formularioTurno', component: PedirTurnoComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'formulario-usuario',  component: FormularioAltaComponent},
   { path: 'errorLogin',  component: ErrorLoginComponent},
-  { path: 'formularioMascota',  component: AltaMascotaComponent}
+  { path: 'formularioMascota',  component: AltaMascotaComponent, canActivate: [MascotaGuard]}
   //{ path: '**', component: ErrorComponent }
 ];
 
