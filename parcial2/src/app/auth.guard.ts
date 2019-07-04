@@ -12,11 +12,11 @@ export class AuthGuard implements CanActivate{
   canActivate(){
     if(localStorage.getItem('tipo')=='cliente'){
       this.router.navigate(['/formularioTurno']);
-      return null;
+      return true;
     }
     else{
       this.router.navigate(['/formularioMascota']);
-      return null;
+      return false;
     }      
   }
 }

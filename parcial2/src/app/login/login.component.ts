@@ -21,11 +21,13 @@ export class LoginComponent implements OnInit {
   tokenLocal: string = 'token';
   tipoLocal: string = 'tipo';
   authServicio: AuthService;
+  auth: AuthGuard;
   
-  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, private ws: WsService, authoService: AuthService) {
+  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, private ws: WsService, authoService: AuthService, authGuarda: AuthGuard) {
     this.miUsuarioServicio = serviceUsuario;
     this.usuario.email='';
     this.authServicio = authoService;
+    this.auth = authGuarda;
    }
 
   email = new FormControl('', [
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
     let respuesta: string;
     let token: any;
     let tipo: string;
-    let auth: AuthGuard;
+  
     this.miUsuarioServicio.login('/login/', this.usuario).toPromise().then(response =>{
       respuesta = JSON.stringify(response);
       console.log("respuesta "+ respuesta);
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
       token = jwt_decode(respuesta);
       tipo = token.data.Tipo;
       localStorage.setItem(this.tipoLocal, tipo);
-        auth.canActivate;
+        this.auth.canActivate;
       },
       msg=>{
         this.router.navigate(['/errorLogin']);
