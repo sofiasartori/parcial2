@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-email-sesion',
@@ -9,7 +10,10 @@ import { Router } from '@angular/router';
 export class EmailSesionComponent implements OnInit {
 
   email: string = '';
-  constructor(private router: Router) { }
+  autServicio: AuthService;
+  constructor(private router: Router, autoServicio: AuthService) {
+    this.autServicio=autoServicio;
+   }
 
   ngOnInit() {
     this.email=localStorage.getItem('email');
@@ -18,7 +22,13 @@ export class EmailSesionComponent implements OnInit {
   logout(){
     localStorage.removeItem('email');
     localStorage.removeItem('token');
-    this.ngOnInit();
+    localStorage.removeItem('tipo');
+    this.autServicio.logOut();
+    this.router.navigate(['/login']);
+    //this.ngOnInit();
   }
 
+  volverMenu(){
+    this.router.navigate(['/menu']);
+  }
 }

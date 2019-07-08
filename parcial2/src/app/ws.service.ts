@@ -13,8 +13,8 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class WsService {
 
-  api = 'http://localhost/veterinaria/apirest.php/';
-  //api = 'http://localhost:8080/veterinaria/apirest.php/';
+  //api = 'http://localhost/veterinaria/apirest.php/';
+  api = 'http://localhost:8080/veterinaria/apirest.php/';
   //url: string = 'http://localhost/servidor/jwt/';
 
   constructor(public http: HttpClient, private authHttp: HttpClient)

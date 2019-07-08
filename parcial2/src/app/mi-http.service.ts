@@ -44,6 +44,7 @@ export class MiHttpService {
 
   public httpPostP2( url: string, objeto: any )
   {
+    console.log("objeto" + objeto)
     let header = new Headers();
     header.set
     return this.http

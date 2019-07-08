@@ -59,9 +59,8 @@ export class LoginComponent implements OnInit {
       token = jwt_decode(respuesta);
       tipo = token.data.Tipo;
       localStorage.setItem(this.tipoLocal, tipo);
-
-      this.router.navigate(['/formularioTurno']);
-      this.router.navigate(['/formularioMascota']);
+      this.router.navigate(['/menu']);
+      
       },
       msg=>{
         this.router.navigate(['/errorLogin']);

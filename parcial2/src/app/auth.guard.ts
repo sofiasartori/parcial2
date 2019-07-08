@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate{
-  constructor(private router: Router){
+  authServicio: AuthService;
+  
+  constructor(private router: Router, autoServicio: AuthService){
     console.log("asdaaaaaaa");
+    this.authServicio=autoServicio;
   }
-  canActivate(){
-    console.log("asda");
-    if (localStorage.getItem('tipo') === 'cliente') {
+
+  canActivate(){    
+    if (this.authServicio.isLogued()){
       return true;
     } else {
-      return false;
+      return false;      
     }
   }
 }

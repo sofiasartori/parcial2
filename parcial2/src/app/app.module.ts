@@ -21,6 +21,7 @@ import { WsService } from './ws.service';
 import { AuthService } from './auth.service';
 import { VerificarJWTService } from './verificar-jwt.service';
 import { AuthGuard } from './auth.guard';
+import { MenuComponent } from './menu/menu.component';
 
 const appRoutes: Routes = [
   {
@@ -33,7 +34,11 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'formulario-usuario',  component: FormularioAltaComponent},
   { path: 'errorLogin',  component: ErrorLoginComponent},
-  { path: 'formularioMascota',  component: AltaMascotaComponent, canActivate: [MascotaGuard]}
+  { path: 'formularioMascota',  component: AltaMascotaComponent, canActivate: [AuthGuard]},
+  { path: 'editarMascota',  component: EditarMascotaComponent, canActivate: [AuthGuard]},
+  { path: 'listaMascota',  component: ListadoMascotaComponent, canActivate: [AuthGuard]},
+  { path: 'listaTurno',  component: ListarTurnoComponent, canActivate: [AuthGuard]},
+  { path: 'menu',  component: MenuComponent, canActivate: [AuthGuard]}
   //{ path: '**', component: ErrorComponent }
 ];
 
@@ -49,7 +54,8 @@ const appRoutes: Routes = [
     ListadoMascotaComponent,
     EditarMascotaComponent,
     PedirTurnoComponent,
-    ListarTurnoComponent
+    ListarTurnoComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

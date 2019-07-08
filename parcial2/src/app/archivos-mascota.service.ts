@@ -6,8 +6,8 @@ import { MiHttpService } from './mi-http.service';
 })
 export class ArchivosMascotaService {
 
-  api = 'http://localhost/veterinaria/apirest.php/';
-  //api = 'http://localhost:8080/veterinaria/apirest.php/';
+  //api = 'http://localhost/veterinaria/apirest.php/';
+  api = 'http://localhost:8080/veterinaria/apirest.php/';
   peticion: any;
   constructor( public miHttp: MiHttpService ) {
   }

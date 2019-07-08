@@ -19,9 +19,13 @@ export class AuthService {
   {
     try {
       // console.log( 'is logued', tokenNotExpired());
-      let rta = this.jwtHelper.isTokenExpired() || false;
+      //let rta = this.jwtHelper.isTokenExpired(this._token) || false;
+      let rta = !this.jwtHelper.isTokenExpired(this._token);
+      console.log("rta" + rta);
       return rta;
     } catch (error) {
+      console.log("error" + error);
+      this.router.navigate(['']);
       return false;
     }
   }
