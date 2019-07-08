@@ -20,11 +20,12 @@ export class AuthService {
     try {
       // console.log( 'is logued', tokenNotExpired());
       //let rta = this.jwtHelper.isTokenExpired(this._token) || false;
+      this._token=localStorage.getItem('token');
       let rta = !this.jwtHelper.isTokenExpired(this._token);
-      console.log("rta" + rta);
+      console.log("no vencido" + rta);
       return rta;
     } catch (error) {
-      console.log("error" + error);
+      console.log("vencido" + error);
       this.router.navigate(['']);
       return false;
     }

@@ -22,6 +22,7 @@ import { AuthService } from './auth.service';
 import { VerificarJWTService } from './verificar-jwt.service';
 import { AuthGuard } from './auth.guard';
 import { MenuComponent } from './menu/menu.component';
+import { BotonMenuComponent } from './boton-menu/boton-menu.component';
 
 const appRoutes: Routes = [
   {
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     EditarMascotaComponent,
     PedirTurnoComponent,
     ListarTurnoComponent,
-    MenuComponent
+    MenuComponent,
+    BotonMenuComponent
   ],
   imports: [
     BrowserModule,

@@ -64,7 +64,7 @@ export class AltaMascotaComponent implements OnInit {
   }
   hacerNuevaMascota()
   {
-    this.nuevaMascota=new Mascota("","", "", 0,"", "");
+    this.nuevaMascota=new Mascota(0,"","", "", 0,"", "");
 
   }
 

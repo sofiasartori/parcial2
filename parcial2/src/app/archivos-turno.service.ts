@@ -27,7 +27,7 @@ export class ArchivosTurnoService {
 
   public insertarTurno(ruta, objeto) {
     console.log('objeto:' + JSON.stringify(objeto));
-    return this.miHttp.httpPostP2(this.api + ruta, JSON.stringify(objeto));
+    return this.miHttp.httpPostP(this.api + ruta, JSON.stringify(objeto));
 
   }
 }

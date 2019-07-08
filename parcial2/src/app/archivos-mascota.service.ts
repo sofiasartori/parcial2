@@ -27,14 +27,22 @@ export class ArchivosMascotaService {
 
   public insertarMascota(ruta, objeto) {
     console.log('objeto:' + JSON.stringify(objeto));
-    return this.miHttp.httpPostP2(this.api + ruta, JSON.stringify(objeto));
+    return this.miHttp.httpPostP(this.api + ruta, JSON.stringify(objeto));
 
   }
 
-  public modificarMascota(ruta, id) {
-    console.log('id:' + id);
-    return this.miHttp.httpPut(this.api + ruta, id);
+  public modificarMascota(ruta, objeto) {
+    return this.miHttp.httpPut(this.api + ruta, objeto);
+  }
 
+  public traerMascota(ruta, id){
+    return this.miHttp.httpGetP(this.api + ruta, id)
+    .toPromise()
+    .then(data=>{
+      return data;
+    }, err=>{
+      console.log(err);
+    });
   }
 
 }

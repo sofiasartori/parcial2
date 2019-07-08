@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HighlightDelayBarrier } from 'blocking-proxy/built/lib/highlight_delay_barrier';
 
 @Component({
   selector: 'app-menu',
@@ -17,8 +18,9 @@ export class MenuComponent implements OnInit {
     if(localStorage.getItem('tipo')=="cliente"){
       this.cliente='cliente';
     }
-    else
+    else{
       this.administrador='administrador';
+    }
   }
 
   altaMascota(){

@@ -20,22 +20,25 @@ export class MiHttpService {
 
   constructor( public http: HttpClient ) { }
 
-  public httpGetP ( url: string, descripcion:string)
+  public httpGetP ( url: string, id:number)
   {
     /*return this.http
     .get( url + descripcion)
     .toPromise()
     .then( this.extractData )
     .catch( this.handleError );*/
-    return this.http.get( url + descripcion)
+    
+    return this.http.get( url + id)
       .map( ( res: Response ) => res)
       .catch( ( err: any ) => throwError(err || 'Server error'));
   }
 
   public httpPostP( url: string, objeto: any )
   {
+    let header = new Headers();
+    header.set
     return this.http
-    .get( url )
+    .post( url,objeto,this.options )
     .subscribe( data => {
       console.log( data );
       return data;
@@ -69,12 +72,12 @@ export class MiHttpService {
     });
   }
 
-  public httpPut( url: string, id: number )
+  public httpPut( url: string, objeto: any )
   {
     let header = new Headers();
     header.set
     return this.http
-    .put( url + id, this.options )
+    .put( url, objeto, this.options )
     .subscribe( data => {
       console.log( data );
       return data;

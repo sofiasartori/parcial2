@@ -17,7 +17,7 @@ export class EmailSesionComponent implements OnInit {
 
   ngOnInit() {
     this.email=localStorage.getItem('email');
-  }
+  }  
 
   logout(){
     localStorage.removeItem('email');

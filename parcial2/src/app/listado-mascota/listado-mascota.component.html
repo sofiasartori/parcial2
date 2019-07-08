@@ -1,4 +1,5 @@
-<app-email-sesion></app-email-sesion>
+<app-email-sesion></app-email-sesion><br>
+<app-boton-menu></app-boton-menu><br>
 <table class="table table-condensed" style="border-width: 2px; border-color: black; border-style: solid;">
     <thead>
       <tr>
@@ -21,7 +22,7 @@
         <td>{{mascota.edad}} </td>
         <td>{{mascota.duenio}} </td>
         <td><img class="fotomascota" [src]="mascota.foto" /> </td>
-        <td><app-editar-mascota [mascota]="mascota.id"></app-editar-mascota></td>
+        <td><app-editar-mascota [idMascota]="mascota.id"></app-editar-mascota></td>
       </tr>
     </tbody>
   </table>

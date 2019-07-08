@@ -22,7 +22,14 @@ export class MascotaService {
   return this.miHttp.insertarMascota('mascotas/alta/', mascota);
  }
 
- modificar(ruta: string, id: number){
-   return this.miHttp.modificarMascota('mascotas/', id);
+ modificar(ruta: string, objeto: any){
+   return this.miHttp.modificarMascota('mascotas/', objeto);
+ }
+
+ traerUno(ruta:string, id: number){
+  return this.miHttp.traerMascota('mascotas/', id).then(data=>{
+    console.log('mascota service', data);
+    return data;
+  });
  }
 }
