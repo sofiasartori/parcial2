@@ -39,13 +39,14 @@ export class PedirTurnoComponent implements OnInit {
   crearTurno()
   {    
     this.SeCreoUnTurno.emit(this.nuevoTurno);
+    this.nuevoTurno.duenio=localStorage.getItem('email');
     
     this.miTurnoServicio.insertar('turnos/alta', this.nuevoTurno);
     this.nuevoTurno=null;
   }
   hacerNuevoTurno()
   {
-    this.nuevoTurno=new Turno("","");
+    this.nuevoTurno=new Turno("","", "");
 
   }
 }

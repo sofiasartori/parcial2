@@ -22,8 +22,8 @@
       <input type="text" [(ngModel)]="nuevaMascota.nombre" placeholder="nombre" [formControl]="nombre" required>
       <label>Edad:</label>
       <input type="number" [(ngModel)]="nuevaMascota.edad" placeholder="edad" [formControl]="edad" required>
-      <label>Dueño:</label>
-      <input type="text" [(ngModel)]="nuevaMascota.duenio" placeholder="dueño" [formControl]="duenio" required>
+      <label *ngIf="admin">Dueño:</label>
+      <input *ngIf="admin" type="text" [(ngModel)]="nuevaMascota.duenio" placeholder="dueño">
       <label>Foto:</label>
       <input #imageInput type="file" [(ngModel)]="nuevaMascota.foto" accept="image/*" [formControl]="foto" required>
       <div>

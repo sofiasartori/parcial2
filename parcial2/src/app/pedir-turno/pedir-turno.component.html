@@ -12,7 +12,7 @@
       <div class="container">
         <label><b>Dia:</b></label>
         <input type="date" [(ngModel)]="nuevoTurno.dia" placeholder="dia" [formControl]="dia" required>
-        <label>Nombre:</label>
+        <label>Hora:</label>
         <input type="time" [(ngModel)]="nuevoTurno.hora" placeholder="hora" [formControl]="hora" required>
         <div>
           <button type="submit" [disabled]="!altaTurnoForm.valid">Crear</button>

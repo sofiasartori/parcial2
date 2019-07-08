@@ -13,9 +13,13 @@ export class AltaMascotaComponent implements OnInit {
   @Output() SeCreoUnaMascota: EventEmitter<any>= new EventEmitter<any>();
   nuevaMascota: Mascota;
   miMascotaServicio: MascotaService;
+  admin: string;
   
   constructor(serviceMascota: MascotaService, private builder: FormBuilder) {
     this.miMascotaServicio = serviceMascota;
+    if(localStorage.getItem("tipo")==="administrador"){
+      this.admin="ok";
+    }
    }
 
   animal = new FormControl('', [
@@ -47,7 +51,7 @@ export class AltaMascotaComponent implements OnInit {
     raza: this.raza,
     nombre: this.nombre,
     edad: this.edad,
-    duenio: this.duenio,
+    //duenio: this.duenio,
     foto: this.foto
   });
 
@@ -58,9 +62,12 @@ export class AltaMascotaComponent implements OnInit {
   crearMascota()
   {    
     this.SeCreoUnaMascota.emit(this.nuevaMascota);
-    
-    this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
-    this.nuevaMascota=null;
+    if(this.nuevaMascota.duenio==""){
+      this.nuevaMascota.duenio=localStorage.getItem("email");
+    }
+    console.log(JSON.stringify(this.nuevaMascota));
+    /*this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
+    this.nuevaMascota=null;*/
   }
   hacerNuevaMascota()
   {

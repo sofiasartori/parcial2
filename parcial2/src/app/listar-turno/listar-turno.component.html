@@ -5,12 +5,14 @@
       <tr>
         <th>Dia</th>
         <th>Hora</th>
+        <th>Dueño</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let turno of listado" >
         <td>{{turno.dia}} </td>
         <td>{{turno.hora}} </td>
+        <td>{{turno.duenio}} </td>
       </tr>
     </tbody>
   </table>

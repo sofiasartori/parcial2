@@ -19,7 +19,7 @@ export class TurnoService {
     });
  }
  insertar(ruta: string, turno: any){
-  return this.miHttp.insertarTurno('turnos/alta', turno);
+  return this.miHttp.insertarTurno('turnos/alta/', turno);
  }
 
 }
