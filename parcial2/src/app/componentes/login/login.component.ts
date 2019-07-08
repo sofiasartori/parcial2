@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../usuario';
+import { Usuario } from '../../clases/usuario';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { registroUsuarioService } from '../registro-usuario.service';
+import { registroUsuarioService } from '../../servicios/registro-usuario.service';
 import { Router, Data } from '@angular/router';
-import { WsService } from '../ws.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../servicios/auth.service';
 import * as jwt_decode from "jwt-decode";
-import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-login',
@@ -20,13 +18,11 @@ export class LoginComponent implements OnInit {
   emailLocal: string = 'email';
   tokenLocal: string = 'token';
   tipoLocal: string = 'tipo';
-  authServicio: AuthService;
 
 
-  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, private ws: WsService, authoService: AuthService) {
+  constructor(serviceUsuario: registroUsuarioService, private builder: FormBuilder, private router: Router, authoService: AuthService) {
     this.miUsuarioServicio = serviceUsuario;
     this.usuario.email='';
-    this.authServicio = authoService;
    }
 
   email = new FormControl('', [

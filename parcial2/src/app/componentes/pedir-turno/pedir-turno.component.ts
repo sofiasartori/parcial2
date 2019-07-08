@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { TurnoService } from '../turno.service';
-import { Turno } from '../turno';
+import { TurnoService } from '../../servicios/turno.service';
+import { Turno } from '../../clases/turno';
 
 @Component({
   selector: 'app-pedir-turno',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TurnoService } from '../turno.service';
+import { TurnoService } from '../../servicios/turno.service';
 
 @Component({
   selector: 'app-listar-turno',

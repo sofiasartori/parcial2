@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { MascotaService } from '../mascota.service';
+import { MascotaService } from '../../servicios/mascota.service';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { Mascota } from '../mascota';
+import { Mascota } from '../../clases/mascota';
 
 @Component({
   selector: 'app-alta-mascota',

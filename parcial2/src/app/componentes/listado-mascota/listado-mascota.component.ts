@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MascotaService } from '../mascota.service';
+import { MascotaService } from '../../servicios/mascota.service';
 import { EditarMascotaComponent } from '../editar-mascota/editar-mascota.component';
 
 @Component({

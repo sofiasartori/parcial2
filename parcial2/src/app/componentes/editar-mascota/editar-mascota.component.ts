@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MascotaService } from '../mascota.service';
-import { Mascota } from '../mascota';
+import { MascotaService } from '../../servicios/mascota.service';
+import { Mascota } from '../../clases/mascota';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({

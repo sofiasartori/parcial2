@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Usuario } from '../usuario';
-import { registroUsuarioService } from '../registro-usuario.service';
+import { Usuario } from '../../clases/usuario';
+import { registroUsuarioService } from '../../servicios/registro-usuario.service';
 
 @Component({
   selector: 'app-formulario-alta',
