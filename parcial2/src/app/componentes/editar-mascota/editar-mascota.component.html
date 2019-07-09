@@ -19,7 +19,7 @@
         <label>Dueño:</label>
         <input type="text" [(ngModel)]="edicionMascota.duenio" placeholder="dueño" [formControl]="duenio" required value="edicionMascota.duenio">
         <label>Foto:</label>
-        <input #imageInput type="file" [(ngModel)]="edicionMascota.foto" accept="image/*" [formControl]="foto" required>
+        <input #imageInput type="file"  accept="image/*" (change)="handleFileSelect($event)" [formControl]="foto" required>
         <div>
           <button type="submit" [disabled]="!editarMascotaForm.valid">Editar</button>
         </div>

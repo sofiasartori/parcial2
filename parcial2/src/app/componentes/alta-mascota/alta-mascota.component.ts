@@ -21,6 +21,7 @@ export class AltaMascotaComponent implements OnInit {
   duenio: FormControl;
   foto: FormControl;
   altaMascotaForm: FormGroup;
+  nombreFoto: string = 'C:/usuarios/sofias/Descargas/';
 
   constructor(serviceMascota: MascotaService, private builder: FormBuilder) {
     this.miMascotaServicio = serviceMascota;
@@ -82,8 +83,11 @@ export class AltaMascotaComponent implements OnInit {
     if(this.nuevaMascota.duenio==""){
       this.nuevaMascota.duenio=localStorage.getItem("email");
     }
-    this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
-    this.nuevaMascota=null;
+    this.nombreFoto  + this.foto.value.slice(13);
+    console.log(this.nombreFoto);
+
+    /*this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
+    this.nuevaMascota=null;*/
   }
   hacerNuevaMascota()
   {

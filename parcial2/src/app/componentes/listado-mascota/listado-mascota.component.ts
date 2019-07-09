@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MascotaService } from '../../servicios/mascota.service';
 import { EditarMascotaComponent } from '../editar-mascota/editar-mascota.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-listado-mascota',
@@ -14,11 +15,14 @@ export class ListadoMascotaComponent implements OnInit {
   modificarMascota: EditarMascotaComponent;
   mascotaBuscada : any;
 
-  constructor(serviceMascota: MascotaService) {
+  constructor(serviceMascota: MascotaService, private sanitizer: DomSanitizer) {
     this.miMascotaServicio = serviceMascota;
-
-
   }
+
+  public getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(' data:image/jpeg;charset=utf-8;base64,' + url);
+  }
+
   ngOnInit() {
     this.TraerTodos();
   }
@@ -26,11 +30,12 @@ export class ListadoMascotaComponent implements OnInit {
     this.miMascotaServicio.traertodos('mascotas/', '').then(data => {
       this.listado = data
       console.log(data)
+      
     })
   }
 
   callbackBuscarMascota(mascotaBuscada){
     this.mascotaBuscada = mascotaBuscada;
-}
+  }
 
 }
