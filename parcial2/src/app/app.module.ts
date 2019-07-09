@@ -13,7 +13,6 @@ import { ErrorLoginComponent } from './componentes/error-login/error-login.compo
 import { EmailSesionComponent } from './componentes/email-sesion/email-sesion.component';
 import { AltaMascotaComponent } from './componentes/alta-mascota/alta-mascota.component';
 import { ListadoMascotaComponent } from './componentes/listado-mascota/listado-mascota.component';
-import { EditarMascotaComponent } from './componentes/editar-mascota/editar-mascota.component';
 import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
 import { ListarTurnoComponent } from './componentes/listar-turno/listar-turno.component';
 import { AuthService } from './servicios/auth.service';
@@ -50,7 +49,6 @@ const appRoutes: Routes = [
     EmailSesionComponent,
     AltaMascotaComponent,
     ListadoMascotaComponent,
-    EditarMascotaComponent,
     PedirTurnoComponent,
     ListarTurnoComponent,
     MenuComponent,

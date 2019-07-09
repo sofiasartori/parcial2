@@ -26,4 +26,4 @@
       </tr>
     </tbody>
   </table>
-<app-formulario-edicion [mascotaId]="mascotaAEditar" (SeModificoUnaMascota)="TraerTodos()"></app-formulario-edicion>
+<app-formulario-edicion *ngIf="mascotaAEditar" [mascotaId]="mascotaAEditar" (SeModificoUnaMascota)="TraerTodos()"></app-formulario-edicion>

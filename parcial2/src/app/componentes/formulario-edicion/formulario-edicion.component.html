@@ -1,5 +1,5 @@
 <div *ngIf="mascotaId">
-  <form [formGroup]="editarMascotaForm" class="modal-content animate" (ngSubmit)="editarMascota()" >
+  <form [formGroup]="editarMascotaForm" class="modal-content animate" (ngSubmit)="editarMascota()" *ngIf="edicionMascota">
     <div class="container">
       <label><b>Animal:</b></label>
       <select [(ngModel)]="edicionMascota.animal"  [formControl]="animal" required value="edicionMascota.animal">
@@ -17,6 +17,7 @@
       <input type="text" [(ngModel)]="edicionMascota.duenio" placeholder="dueño" [formControl]="duenio" required value="edicionMascota.duenio">
       <label>Foto:</label>
       <input #imageInput type="file"  accept="image/*" (change)="handleFileSelect($event)" [formControl]="foto" required>
+      <img width="50" height="50" [src]="getSantizeUrl(edicionMascota.foto)" />
       <div>
         <button type="submit" [disabled]="!editarMascotaForm.valid">Guardar</button>
       </div>

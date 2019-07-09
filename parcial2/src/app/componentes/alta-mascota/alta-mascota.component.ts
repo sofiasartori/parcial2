@@ -84,10 +84,8 @@ export class AltaMascotaComponent implements OnInit {
       this.nuevaMascota.duenio=localStorage.getItem("email");
     }
     this.nombreFoto  + this.foto.value.slice(13);
-    console.log(this.nombreFoto);
-
-    /*this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
-    this.nuevaMascota=null;*/
+    this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
+    this.nuevaMascota=null;
   }
   hacerNuevaMascota()
   {

@@ -3,6 +3,7 @@ import { MascotaService } from 'src/app/servicios/mascota.service';
 import { Mascota } from 'src/app/clases/mascota';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class FormularioEdicionComponent implements OnInit {
   foto: FormControl;
   editarMascotaForm: FormGroup;
   
-  constructor(serviceMascota: MascotaService, private builder: FormBuilder, private router: Router) {
+  constructor(serviceMascota: MascotaService, private builder: FormBuilder, private router: Router, private sanitizer: DomSanitizer) {
     this.miMascotaServicio = serviceMascota;
     if(localStorage.getItem("tipo")==="administrador"){
       this.admin="ok";
@@ -74,6 +75,10 @@ export class FormularioEdicionComponent implements OnInit {
   }
 
   public ngOnInit() {
+  }
+
+  public getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(' data:image/jpeg;charset=utf-8;base64,' + url);
   }
 
   ngOnChanges(changes: SimpleChanges){

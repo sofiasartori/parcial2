@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MascotaService } from '../../servicios/mascota.service';
-import { EditarMascotaComponent } from '../editar-mascota/editar-mascota.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -12,7 +11,6 @@ export class ListadoMascotaComponent implements OnInit {
 
   listado: any;
   miMascotaServicio: MascotaService;
-  modificarMascota: EditarMascotaComponent;
   mascotaBuscada : any;
   mascotaAEditar = null;
   constructor(serviceMascota: MascotaService, private sanitizer: DomSanitizer) {
