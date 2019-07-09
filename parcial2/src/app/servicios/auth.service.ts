@@ -22,10 +22,8 @@ export class AuthService {
       //let rta = this.jwtHelper.isTokenExpired(this._token) || false;
       this._token=localStorage.getItem('token');
       let rta = !this.jwtHelper.isTokenExpired(this._token);
-      console.log("no vencido" + rta);
       return rta;
     } catch (error) {
-      console.log("vencido" + error);
       this.router.navigate(['']);
       return false;
     }

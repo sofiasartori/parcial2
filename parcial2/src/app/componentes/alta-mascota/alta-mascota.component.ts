@@ -14,46 +14,63 @@ export class AltaMascotaComponent implements OnInit {
   nuevaMascota: Mascota;
   miMascotaServicio: MascotaService;
   admin: string;
-  
+  animal: FormControl;
+  raza: FormControl;
+  nombre: FormControl;
+  edad: FormControl;
+  duenio: FormControl;
+  foto: FormControl;
+  altaMascotaForm: FormGroup;
+
   constructor(serviceMascota: MascotaService, private builder: FormBuilder) {
     this.miMascotaServicio = serviceMascota;
     if(localStorage.getItem("tipo")==="administrador"){
       this.admin="ok";
     }
+
+    this.animal = new FormControl('', [
+      Validators.required
+    ]);
+    
+    this.raza = new FormControl('', [
+      Validators.required
+    ]);
+  
+    this.nombre = new FormControl('', [
+      Validators.required
+    ]);
+  
+    this.edad = new FormControl('', [
+      Validators.required
+    ]);
+  
+    this.duenio = new FormControl('', [
+      Validators.required
+    ]);
+  
+    this.foto = new FormControl('', [
+      Validators.required
+    ]);
+    const group = (this.admin === 'ok')? {
+      animal: this.animal,
+      raza: this.raza,
+      nombre: this.nombre,
+      edad: this.edad,
+      duenio: this.duenio,
+      foto: this.foto
+    } : 
+    {
+      animal: this.animal,
+      raza: this.raza,
+      nombre: this.nombre,
+      edad: this.edad,
+      foto: this.foto
+    }
+
+    this.altaMascotaForm = this.builder.group(group);
    }
 
-  animal = new FormControl('', [
-    Validators.required
-  ]);
   
-  raza = new FormControl('', [
-    Validators.required
-  ]);
-
-  nombre = new FormControl('', [
-    Validators.required
-  ]);
-
-  edad = new FormControl('', [
-    Validators.required
-  ]);
-
-  duenio = new FormControl('', [
-    Validators.required
-  ]);
-
-  foto = new FormControl('', [
-    Validators.required
-  ]);
-  
-  altaMascotaForm: FormGroup = this.builder.group({
-    animal: this.animal,
-    raza: this.raza,
-    nombre: this.nombre,
-    edad: this.edad,
-    //duenio: this.duenio,
-    foto: this.foto
-  });
 
 
   ngOnInit() {
@@ -65,9 +82,8 @@ export class AltaMascotaComponent implements OnInit {
     if(this.nuevaMascota.duenio==""){
       this.nuevaMascota.duenio=localStorage.getItem("email");
     }
-    console.log(JSON.stringify(this.nuevaMascota));
-    /*this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
-    this.nuevaMascota=null;*/
+    this.miMascotaServicio.insertar('mascotas/alta', this.nuevaMascota);
+    this.nuevaMascota=null;
   }
   hacerNuevaMascota()
   {
