@@ -1,23 +1,32 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MascotaService } from '../../servicios/mascota.service';
-import { Mascota } from '../../clases/mascota';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { MascotaService } from 'src/app/servicios/mascota.service';
+import { Mascota } from 'src/app/clases/mascota';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-editar-mascota',
-  templateUrl: './editar-mascota.component.html',
-  styleUrls: ['./editar-mascota.component.css']
+  selector: 'app-formulario-edicion',
+  templateUrl: './formulario-edicion.component.html',
+  styleUrls: ['./formulario-edicion.component.css']
 })
-export class EditarMascotaComponent implements OnInit {
+export class FormularioEdicionComponent implements OnInit {
 
-  @Input() idMascota: number;
-  @Output() editar= new EventEmitter<any>();
- 
-
+  @Input() mascotaId : number; 
+  @Output() SeModificoUnaMascota: EventEmitter<any>= new EventEmitter<any>();
+  miMascotaServicio: MascotaService;
+  edicionMascota: Mascota;
+  admin: string;
+  animal: FormControl;
+  raza: FormControl;
+  nombre: FormControl;
+  edad: FormControl;
+  duenio: FormControl;
+  foto: FormControl;
+  editarMascotaForm: FormGroup;
+  
   constructor(serviceMascota: MascotaService, private builder: FormBuilder, private router: Router) {
-    /*this.miMascotaServicio = serviceMascota;
-
+    this.miMascotaServicio = serviceMascota;
     if(localStorage.getItem("tipo")==="administrador"){
       this.admin="ok";
     }
@@ -61,20 +70,18 @@ export class EditarMascotaComponent implements OnInit {
       foto: this.foto
     }
 
-    this.editarMascotaForm = this.builder.group(group);*/
-   }
-
-  public onClickButton() {
-    /*this.miMascotaServicio.traerUno('mascotas/', this.idMascota).then(data=>{
-      this.edicionMascota = new Mascota(data[0].id, data[0].animal, data[0].raza, data[0].nombre, data[0].edad, data[0].duenio, data[0].foto);
-    });*/
-    this.editar.emit(this.idMascota);
+    this.editarMascotaForm = this.builder.group(group);
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
-  
-  /*handleFileSelect(evt){
+
+  ngOnChanges(changes: SimpleChanges){
+    console.log(this.mascotaId);
+    this.completarForm();
+  }
+
+  handleFileSelect(evt){
     var files = evt.target.files;
     var file = files[0];
 
@@ -89,7 +96,6 @@ export class EditarMascotaComponent implements OnInit {
 
 _handleReaderLoaded(readerEvt) {
    var binaryString = readerEvt.target.result;
-          // this.foto.setValue(btoa(binaryString));
           this.edicionMascota.foto =  btoa(binaryString)
           console.log(btoa(binaryString));
   }
@@ -100,8 +106,14 @@ _handleReaderLoaded(readerEvt) {
     console.log(this.edicionMascota);
     this.miMascotaServicio.modificar('mascotas/alta', this.edicionMascota);
     this.edicionMascota=null;
-    this.SeModificoUnaMascota.emit()
-    
-  }*/
+    this.SeModificoUnaMascota.emit();
+    this.router.navigate(['/listaMascota']);    
+  }
+
+  public completarForm(){
+    this.miMascotaServicio.traerUno('mascotas/', this.mascotaId).then(data=>{
+      this.edicionMascota = new Mascota(data[0].id, data[0].animal, data[0].raza, data[0].nombre, data[0].edad, data[0].duenio, data[0].foto);
+    });
+  }
 
 }

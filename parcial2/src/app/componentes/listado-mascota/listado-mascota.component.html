@@ -22,7 +22,8 @@
         <td>{{mascota.edad}} </td>
         <td>{{mascota.duenio}} </td>
         <td><img width="50" height="50" [src]="getSantizeUrl(mascota.foto)" /> </td>
-        <td><app-editar-mascota [idMascota]="mascota.id"></app-editar-mascota></td>
+        <td><button (click)="abrirFormilarioEdicion(mascota.id)">Editar</button></td>
       </tr>
     </tbody>
   </table>
+<app-formulario-edicion [mascotaId]="mascotaAEditar" (SeModificoUnaMascota)="TraerTodos()"></app-formulario-edicion>

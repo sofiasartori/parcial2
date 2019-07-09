@@ -14,7 +14,7 @@ export class ListadoMascotaComponent implements OnInit {
   miMascotaServicio: MascotaService;
   modificarMascota: EditarMascotaComponent;
   mascotaBuscada : any;
-
+  mascotaAEditar = null;
   constructor(serviceMascota: MascotaService, private sanitizer: DomSanitizer) {
     this.miMascotaServicio = serviceMascota;
   }
@@ -38,4 +38,11 @@ export class ListadoMascotaComponent implements OnInit {
     this.mascotaBuscada = mascotaBuscada;
   }
 
+  mascotaModificada(){
+    this.TraerTodos();
+  }
+  
+  abrirFormilarioEdicion(idMascota){
+    this.mascotaAEditar = idMascota;
+  }
 }

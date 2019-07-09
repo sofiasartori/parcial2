@@ -20,6 +20,7 @@ import { AuthService } from './servicios/auth.service';
 import { AuthGuard } from './auth.guard';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { BotonMenuComponent } from './componentes/boton-menu/boton-menu.component';
+import { FormularioEdicionComponent } from './componentes/formulario-edicion/formulario-edicion.component';
 
 const appRoutes: Routes = [
   {
@@ -32,10 +33,10 @@ const appRoutes: Routes = [
   { path: 'formulario-usuario',  component: FormularioAltaComponent},
   { path: 'errorLogin',  component: ErrorLoginComponent},
   { path: 'formularioMascota',  component: AltaMascotaComponent, canActivate: [AuthGuard]},
-  { path: 'editarMascota',  component: EditarMascotaComponent, canActivate: [AuthGuard]},
   { path: 'listaMascota',  component: ListadoMascotaComponent, canActivate: [AuthGuard]},
   { path: 'listaTurno',  component: ListarTurnoComponent, canActivate: [AuthGuard]},
-  { path: 'menu',  component: MenuComponent, canActivate: [AuthGuard]}
+  { path: 'menu',  component: MenuComponent, canActivate: [AuthGuard]},
+  { path: 'editarMascota',  component: FormularioEdicionComponent, canActivate: [AuthGuard]}
   //{ path: '**', component: ErrorComponent }
 ];
 
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     PedirTurnoComponent,
     ListarTurnoComponent,
     MenuComponent,
-    BotonMenuComponent
+    BotonMenuComponent,
+    FormularioEdicionComponent
   ],
   imports: [
     BrowserModule,

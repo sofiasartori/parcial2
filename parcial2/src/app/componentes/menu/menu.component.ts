@@ -27,10 +27,6 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/formularioMascota']);
   }
 
-  editarMascota(){
-    this.router.navigate(['/editarMascota']);
-  }
-
   listadoMascotas(){
     this.router.navigate(['/listaMascota']);
   }
