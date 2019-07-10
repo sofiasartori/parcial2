@@ -3,5 +3,5 @@ export class MensajeChat{
     email?: string; 
     userName?:  string;
     message?: string;
-    timeSent?:string | Date = new Date();
+    timeSent?:string;
 }

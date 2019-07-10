@@ -13,13 +13,16 @@ export class ChatService {
   user: firebase.User;
   mensajesChat: AngularFireList<MensajeChat>;
   mensajeChat: MensajeChat;
-  userName: Observable<string> | string ;
+  userName: string ;
   
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(auth=>{
       if(auth !== undefined && auth !== null){
         this.user = auth;
       }
+      this.getUser().subscribe(a => {
+        this.userName = a.displayName;
+      });
     })
    }
 
@@ -35,6 +38,12 @@ export class ChatService {
     });
   }
 
+  getUser() {
+    const userId = this.user.uid;
+    const path = `/users/${userId}`;
+    return this.db.object<any>(path).valueChanges();
+  }
+
   getTimeStamp(){
     const ahora = new Date();
     const fecha = ahora.getUTCFullYear() + '/' + (ahora.getUTCMonth()+1) + '/' + ahora.getUTCDay();
@@ -42,9 +51,8 @@ export class ChatService {
     return (fecha + ' ' + hora);
   }
 
-  obtenerMensajes(): AngularFireList<MensajeChat>{
-    return this.db.list('/messages', ref=>{
-      return ref.limitToLast(25).orderByKey()
-    })
+  obtenerMensajes(): AngularFireList<MensajeChat> {
+    // changed the query since the AngularFireList does it differently.
+    return this.db.list('messages', ref => ref.orderByKey().limitToLast(25));
   }
 }
