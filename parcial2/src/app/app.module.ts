@@ -20,6 +20,14 @@ import { AuthGuard } from './auth.guard';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { BotonMenuComponent } from './componentes/boton-menu/boton-menu.component';
 import { FormularioEdicionComponent } from './componentes/formulario-edicion/formulario-edicion.component';
+import { ChatComponent } from './componentes/chat/chat.component';
+import { ChatService } from './servicios/chat.service';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FormularioChatComponent } from './componentes/formulario-chat/formulario-chat.component';
+
 
 const appRoutes: Routes = [
   {
@@ -35,7 +43,8 @@ const appRoutes: Routes = [
   { path: 'listaMascota',  component: ListadoMascotaComponent, canActivate: [AuthGuard]},
   { path: 'listaTurno',  component: ListarTurnoComponent, canActivate: [AuthGuard]},
   { path: 'menu',  component: MenuComponent, canActivate: [AuthGuard]},
-  { path: 'editarMascota',  component: FormularioEdicionComponent, canActivate: [AuthGuard]}
+  { path: 'editarMascota',  component: FormularioEdicionComponent, canActivate: [AuthGuard]},
+  { path: 'chat',  component: FormularioChatComponent, canActivate: [AuthGuard]}
   //{ path: '**', component: ErrorComponent }
 ];
 
@@ -53,7 +62,9 @@ const appRoutes: Routes = [
     ListarTurnoComponent,
     MenuComponent,
     BotonMenuComponent,
-    FormularioEdicionComponent
+    FormularioEdicionComponent,
+    ChatComponent,
+    FormularioChatComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +72,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule, 
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthService],
+  providers: [AuthService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
