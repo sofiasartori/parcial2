@@ -18,10 +18,7 @@ export class MensajeComponent implements OnInit {
   ngOnInit(){
     this.servicio.obtenerMensajes().subscribe(actionArray=>{
       this.lista = actionArray.map(item=>{
-        console.log(JSON.stringify(item.payload.doc.data()));
-        return{
-          mensaje: item.payload.doc.data()          
-        } as MensajeChat;
+        return item.payload.doc.data() 
       })
     })
   }

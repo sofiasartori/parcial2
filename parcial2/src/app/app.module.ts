@@ -20,7 +20,6 @@ import { AuthGuard } from './auth.guard';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { BotonMenuComponent } from './componentes/boton-menu/boton-menu.component';
 import { FormularioEdicionComponent } from './componentes/formulario-edicion/formulario-edicion.component';
-import { ChatComponent } from './componentes/chat/chat.component';
 import { ChatService } from './servicios/chat.service';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -45,7 +44,7 @@ const appRoutes: Routes = [
   { path: 'listaTurno',  component: ListarTurnoComponent, canActivate: [AuthGuard]},
   { path: 'menu',  component: MenuComponent, canActivate: [AuthGuard]},
   { path: 'editarMascota',  component: FormularioEdicionComponent, canActivate: [AuthGuard]},
-  { path: 'chat',  component: SalaChatComponent}
+  { path: 'chat',  component: SalaChatComponent, canActivate:[AuthGuard]}
   //{ path: '**', component: ErrorComponent }
 ];
 
@@ -64,7 +63,6 @@ const appRoutes: Routes = [
     MenuComponent,
     BotonMenuComponent,
     FormularioEdicionComponent,
-    ChatComponent,
     FormularioChatComponent,
     MensajeComponent,
     SalaChatComponent

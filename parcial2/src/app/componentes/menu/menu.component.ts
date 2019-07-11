@@ -39,4 +39,8 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/formularioTurno']);
   }
 
+  chat(){
+    this.router.navigate(['/chat']);
+  }
+
 }
