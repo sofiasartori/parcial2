@@ -23,10 +23,11 @@ import { FormularioEdicionComponent } from './componentes/formulario-edicion/for
 import { ChatComponent } from './componentes/chat/chat.component';
 import { ChatService } from './servicios/chat.service';
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormularioChatComponent } from './componentes/formulario-chat/formulario-chat.component';
+import { MensajeComponent } from './componentes/mensaje/mensaje.component';
+import { SalaChatComponent } from './componentes/sala-chat/sala-chat.component';
 
 
 const appRoutes: Routes = [
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
   { path: 'listaTurno',  component: ListarTurnoComponent, canActivate: [AuthGuard]},
   { path: 'menu',  component: MenuComponent, canActivate: [AuthGuard]},
   { path: 'editarMascota',  component: FormularioEdicionComponent, canActivate: [AuthGuard]},
-  { path: 'chat',  component: FormularioChatComponent, canActivate: [AuthGuard]}
+  { path: 'chat',  component: SalaChatComponent}
   //{ path: '**', component: ErrorComponent }
 ];
 
@@ -64,7 +65,9 @@ const appRoutes: Routes = [
     BotonMenuComponent,
     FormularioEdicionComponent,
     ChatComponent,
-    FormularioChatComponent
+    FormularioChatComponent,
+    MensajeComponent,
+    SalaChatComponent
   ],
   imports: [
     BrowserModule,
@@ -73,10 +76,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule, 
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule   
   ],
   providers: [AuthService, ChatService],
   bootstrap: [AppComponent]

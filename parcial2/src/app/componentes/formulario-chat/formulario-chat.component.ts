@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { ChatService } from 'src/app/servicios/chat.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-chat',
@@ -8,20 +10,26 @@ import { ChatService } from 'src/app/servicios/chat.service';
 })
 export class FormularioChatComponent implements OnInit {
 
-  mensaje: string;
-  constructor(private chat: ChatService) { }
+  mensaje: string
+  
+  constructor(private firestore: AngularFirestore) {
+   }
 
   ngOnInit() {
   }
 
-  enviar(){
-    this.chat.enviarMensaje(this.mensaje)
+  resetearCampo(){
+    this.mensaje= ' ';
   }
 
-  handleSubmit(event){
-    if(event.keyCode === 13){
-      this.enviar(); 
+  enviar(){
+    let data={
+      mensaje: this.mensaje,
+      email: localStorage.getItem("email")
     }
+    this.firestore.collection('mensajes').add(data);
+    this.resetearCampo();
   }
 
 }
+  
