@@ -4,11 +4,11 @@ class Turno
 {
 	public $dia;
 	public $hora;
-	
+	public $duenio;
 	
     public function traerTodosTurnos(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM veterinaria.turnos");
+		$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM veterinaria.turno");
 		$consulta->execute();
 		
 
@@ -32,9 +32,10 @@ class Turno
 	public function insertarTurno($request){
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 			var_dump($request);
-			$itemsTurno = $objetoAccesoDato->RetornarConsulta("INSERT into veterinaria.turnos (dia, hora) values (:dia, :hora);");
+			$itemsTurno = $objetoAccesoDato->RetornarConsulta("INSERT into veterinaria.turno (dia, hora, duenio) values (:dia, :hora, :duenio);");
 			$itemsTurno->bindValue(':dia', $request['dia'], PDO::PARAM_STR);
 			$itemsTurno->bindValue(':hora', $request['hora'], PDO::PARAM_STR);
+			$itemsTurno->bindValue(':duenio', $request['duenio'], PDO::PARAM_STR);
 			$itemsTurno->execute();
 		
 	}

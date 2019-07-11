@@ -16,13 +16,16 @@ class mascotaApi extends Mascota implements IApiUsable
     }
 
     public function ModificarUno($request, $response, $args){
-    	$id=$args['id'];
-    	$consulta = Mascota::modificarMascota($id);
+    	$arrayParametro = $request->getParsedBody();
+    	$consulta = Mascota::modificarMascota($arrayParametro);
     }
 
     public function BorrarUno($request, $response, $args){}
 
-    public function BuscarUno($request, $response, $args){}    
+    public function BuscarUno($request, $response, $args){
+        $id=$args['id'];
+        $consulta = Mascota::buscarMascota($id);
+    }    
     
 }
 ?>

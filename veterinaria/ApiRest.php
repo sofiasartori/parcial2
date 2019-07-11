@@ -47,8 +47,9 @@ $app->post('/login/', function(Request $request, Response $response){
 $app->group('/mascotas', function () {
 
   $this->get('/', \MascotaApi::class . ':traerTodos');
+  $this->get('/{id}', \MascotaApi::class . ':buscarUno');
   $this->post('/alta/', \MascotaApi::class . ':CargarUno');  
-  $this->put('/{id}', \MascotaApi::class . ':ModificarUno');
+  $this->put('/', \MascotaApi::class . ':ModificarUno');
 })->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
 $app->group('/turnos', function () {

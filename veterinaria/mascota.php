@@ -6,7 +6,7 @@ class Mascota
 	public $raza;
 	public $nombre;
 	public $edad;
-	public $dueño;
+	public $duenio;
 	public $foto;
 	
     public function traerTodasMascotas(){
@@ -47,9 +47,10 @@ class Mascota
 	}
 
 
-	public function modificarMascota($id){
+	public function modificarMascota($request){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE veterinaria.mascotas SET animal=:animal, raza=:raza, nombre=:nombre, edad=:edad, duenio=:duenio, foto=:foto where id=$id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE veterinaria.mascotas SET animal=:animal, raza=:raza, nombre=:nombre, edad=:edad, duenio=:duenio, foto=:foto where id=:id");
+		$consulta->bindValue(':id', $request['id'], PDO::PARAM_INT);
 		$consulta->bindValue(':animal', $request['animal'], PDO::PARAM_STR);
 		$consulta->bindValue(':raza', $request['raza'], PDO::PARAM_STR);
 		$consulta->bindValue(':nombre', $request['nombre'], PDO::PARAM_STR);
@@ -58,8 +59,19 @@ class Mascota
 		$consulta->bindValue(':foto', $request['foto'], PDO::PARAM_STR);
 		$consulta->execute();
 		$miArray = Array();
-		while($i=$consulta->fetchObject('Usuario')){
+		while($i=$consulta->fetchObject('Mascota')){
 			array_push($miArray, $i);		
+		}
+		echo json_encode($miArray);
+	}
+
+	public function buscarMascota($id){
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+		$consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM veterinaria.mascotas WHERE id=$id");
+		$consulta->execute();
+		$miArray=Array();
+		while ($i=$consulta->fetchObject('Mascota')){
+			array_push($miArray, $i);
 		}
 		echo json_encode($miArray);
 	}
